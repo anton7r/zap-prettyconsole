@@ -10,7 +10,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	prettyconsole "github.com/thessem/zap-prettyconsole"
+	prettyconsole "github.com/anton7r/zap-prettyconsole"
 )
 
 type User struct {

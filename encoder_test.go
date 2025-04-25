@@ -198,12 +198,12 @@ func TestEncodeEntry(t *testing.T) {
 		},
 		{
 			desc: "Errors",
-			// 4:33PM ERR > test message named_stracktrace=github.com/thessem/zap-prettyconsole.TestEncodeEntry\n\t/<some_file>:<line_number>\ntesting.tRunner\n\t/<some_file>:<line_number>
+			// 4:33PM ERR > test message named_stracktrace=github.com/anton7r/zap-prettyconsole.TestEncodeEntry\n\t/<some_file>:<line_number>\ntesting.tRunner\n\t/<some_file>:<line_number>
 			//  ↳ error=something \nwent wrong
 			//  ↳ nested.cause=error with stacktrace
 			// 				.cause.cause=error with 2 causes
 			// 							 .cause.cause.0=cause 1
-			// 											.stacktrace=github.com/thessem/zap-prettyconsole.TestEncodeEntry
+			// 											.stacktrace=github.com/anton7r/zap-prettyconsole.TestEncodeEntry
 			// 															/<some_file>:<line_number>
 			// 														testing.tRunner
 			// 															/<some_file>:<line_number>
@@ -212,19 +212,19 @@ func TestEncodeEntry(t *testing.T) {
 			// 								   .cause.1.cause=deeper error with two causes
 			// 												  .cause.cause.0=deeper cause 1
 			// 														.cause.1=deeper cause 2
-			// 										   .stacktrace=github.com/thessem/zap-prettyconsole.TestEncodeEntry
+			// 										   .stacktrace=github.com/anton7r/zap-prettyconsole.TestEncodeEntry
 			// 														/<some_file>:<line_number>
 			// 													   testing.tRunner
 			// 														/<some_file>:<line_number>
 			// 													   runtime.goexit
 			// 														/<some_file>:<line_number>
-			// 					  .stacktrace=github.com/thessem/zap-prettyconsole.TestEncodeEntry
+			// 					  .stacktrace=github.com/anton7r/zap-prettyconsole.TestEncodeEntry
 			// 									/<some_file>:<line_number>
 			// 								  testing.tRunner
 			// 									/<some_file>:<line_number>
 			// 								  runtime.goexit
 			// 									/<some_file>:<line_number>
-			// 		 .stacktrace=github.com/thessem/zap-prettyconsole.TestEncodeEntry
+			// 		 .stacktrace=github.com/anton7r/zap-prettyconsole.TestEncodeEntry
 			// 						/<some_file>:<line_number>
 			// 					 testing.tRunner
 			// 						/<some_file>:<line_number>
@@ -233,17 +233,17 @@ func TestEncodeEntry(t *testing.T) {
 			//  ↳ nil_panic_PANIC_DISPLAYING_ERROR=PANIC=Panic!
 			//  ↳ normal_panic<nil>
 			//  ↳ stack=an error with a stacktrace has occurred
-			// 		 .stacktrace=github.com/thessem/zap-prettyconsole.TestEncodeEntry
+			// 		 .stacktrace=github.com/anton7r/zap-prettyconsole.TestEncodeEntry
 			// 						/<some_file>:<line_number>
 			// 					 testing.tRunner
 			// 						/<some_file>:<line_number>
 			// 					 runtime.goexit
 			// 						/<some_file>:<line_number>
-			//  ↳ stacktrace=github.com/thessem/zap-prettyconsole.TestEncodeEntry
+			//  ↳ stacktrace=github.com/anton7r/zap-prettyconsole.TestEncodeEntry
 			// 				/<some_file>:<line_number>
 			// 			  testing.tRunner
 			// 				/<some_file>:<line_number>
-			expected: "\x1b[90m4:33PM\x1b[0m\x1b[31m \x1b[0m\x1b[31mERR\x1b[0m\x1b[31m \x1b[0m\x1b[1m\x1b[31m>\x1b[0m\x1b[0m\x1b[31m \x1b[0mtest message\x1b[31m \x1b[0m\x1b[31mnamed_stracktrace=\x1b[0mgithub.com/thessem/zap-prettyconsole.TestEncodeEntry\x1b[31m\\n\x1b[0m\x1b[31m\\t\x1b[0m/<some_file>:<line_number>\x1b[31m\\n\x1b[0mtesting.tRunner\x1b[31m\\n\x1b[0m\x1b[31m\\t\x1b[0m/<some_file>:<line_number>\n\x1b[31m  ↳ error\x1b[0m\x1b[31m=\x1b[0msomething \x1b[31m\\n\x1b[0mwent wrong\n\x1b[31m  ↳ nested\x1b[0m\x1b[31m.cause\x1b[0m\x1b[31m=\x1b[0merror with stacktrace\n                 \x1b[31m.cause\x1b[0m\x1b[31m.cause\x1b[0m\x1b[31m=\x1b[0merror with 2 causes\n                              \x1b[31m.cause\x1b[0m\x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mcause 1\n                                             \x1b[31m.stacktrace=\x1b[0mgithub.com/thessem/zap-prettyconsole.TestEncodeEntry\n                                                         \t/<some_file>:<line_number>\n                                                         testing.tRunner\n                                                         \t/<some_file>:<line_number>\n                                                         runtime.goexit\n                                                         \t/<some_file>:<line_number>\n                                    \x1b[31m.cause.1\x1b[0m\x1b[31m.cause\x1b[0m\x1b[31m=\x1b[0mdeeper error with two causes\n                                                   \x1b[31m.cause\x1b[0m\x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mdeeper cause 1\n                                                         \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mdeeper cause 2\n                                            \x1b[31m.stacktrace=\x1b[0mgithub.com/thessem/zap-prettyconsole.TestEncodeEntry\n                                                        \t/<some_file>:<line_number>\n                                                        testing.tRunner\n                                                        \t/<some_file>:<line_number>\n                                                        runtime.goexit\n                                                        \t/<some_file>:<line_number>\n                       \x1b[31m.stacktrace=\x1b[0mgithub.com/thessem/zap-prettyconsole.TestEncodeEntry\n                                   \t/<some_file>:<line_number>\n                                   testing.tRunner\n                                   \t/<some_file>:<line_number>\n                                   runtime.goexit\n                                   \t/<some_file>:<line_number>\n          \x1b[31m.stacktrace=\x1b[0mgithub.com/thessem/zap-prettyconsole.TestEncodeEntry\n                      \t/<some_file>:<line_number>\n                      testing.tRunner\n                      \t/<some_file>:<line_number>\n                      runtime.goexit\n                      \t/<some_file>:<line_number>\n\x1b[31m  ↳ nil_panic_PANIC_DISPLAYING_ERROR\x1b[0m\x1b[31m=\x1b[0mPANIC=Panic!\n\x1b[31m  ↳ normal_panic\x1b[0m<nil>\n\x1b[31m  ↳ stack\x1b[0m\x1b[31m=\x1b[0man error with a stacktrace has occurred\n          \x1b[31m.stacktrace=\x1b[0mgithub.com/thessem/zap-prettyconsole.TestEncodeEntry\n                      \t/<some_file>:<line_number>\n                      testing.tRunner\n                      \t/<some_file>:<line_number>\n                      runtime.goexit\n                      \t/<some_file>:<line_number>\n\x1b[31m  ↳ \x1b[0m\x1b[31mstacktrace=\x1b[0mgithub.com/thessem/zap-prettyconsole.TestEncodeEntry\n               \t/<some_file>:<line_number>\n               testing.tRunner\n               \t/<some_file>:<line_number>\n",
+			expected: "\x1b[90m4:33PM\x1b[0m\x1b[31m \x1b[0m\x1b[31mERR\x1b[0m\x1b[31m \x1b[0m\x1b[1m\x1b[31m>\x1b[0m\x1b[0m\x1b[31m \x1b[0mtest message\x1b[31m \x1b[0m\x1b[31mnamed_stracktrace=\x1b[0mgithub.com/anton7r/zap-prettyconsole.TestEncodeEntry\x1b[31m\\n\x1b[0m\x1b[31m\\t\x1b[0m/<some_file>:<line_number>\x1b[31m\\n\x1b[0mtesting.tRunner\x1b[31m\\n\x1b[0m\x1b[31m\\t\x1b[0m/<some_file>:<line_number>\n\x1b[31m  ↳ error\x1b[0m\x1b[31m=\x1b[0msomething \x1b[31m\\n\x1b[0mwent wrong\n\x1b[31m  ↳ nested\x1b[0m\x1b[31m.cause\x1b[0m\x1b[31m=\x1b[0merror with stacktrace\n                 \x1b[31m.cause\x1b[0m\x1b[31m.cause\x1b[0m\x1b[31m=\x1b[0merror with 2 causes\n                              \x1b[31m.cause\x1b[0m\x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mcause 1\n                                             \x1b[31m.stacktrace=\x1b[0mgithub.com/anton7r/zap-prettyconsole.TestEncodeEntry\n                                                         \t/<some_file>:<line_number>\n                                                         testing.tRunner\n                                                         \t/<some_file>:<line_number>\n                                                         runtime.goexit\n                                                         \t/<some_file>:<line_number>\n                                    \x1b[31m.cause.1\x1b[0m\x1b[31m.cause\x1b[0m\x1b[31m=\x1b[0mdeeper error with two causes\n                                                   \x1b[31m.cause\x1b[0m\x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mdeeper cause 1\n                                                         \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mdeeper cause 2\n                                            \x1b[31m.stacktrace=\x1b[0mgithub.com/anton7r/zap-prettyconsole.TestEncodeEntry\n                                                        \t/<some_file>:<line_number>\n                                                        testing.tRunner\n                                                        \t/<some_file>:<line_number>\n                                                        runtime.goexit\n                                                        \t/<some_file>:<line_number>\n                       \x1b[31m.stacktrace=\x1b[0mgithub.com/anton7r/zap-prettyconsole.TestEncodeEntry\n                                   \t/<some_file>:<line_number>\n                                   testing.tRunner\n                                   \t/<some_file>:<line_number>\n                                   runtime.goexit\n                                   \t/<some_file>:<line_number>\n          \x1b[31m.stacktrace=\x1b[0mgithub.com/anton7r/zap-prettyconsole.TestEncodeEntry\n                      \t/<some_file>:<line_number>\n                      testing.tRunner\n                      \t/<some_file>:<line_number>\n                      runtime.goexit\n                      \t/<some_file>:<line_number>\n\x1b[31m  ↳ nil_panic_PANIC_DISPLAYING_ERROR\x1b[0m\x1b[31m=\x1b[0mPANIC=Panic!\n\x1b[31m  ↳ normal_panic\x1b[0m<nil>\n\x1b[31m  ↳ stack\x1b[0m\x1b[31m=\x1b[0man error with a stacktrace has occurred\n          \x1b[31m.stacktrace=\x1b[0mgithub.com/anton7r/zap-prettyconsole.TestEncodeEntry\n                      \t/<some_file>:<line_number>\n                      testing.tRunner\n                      \t/<some_file>:<line_number>\n                      runtime.goexit\n                      \t/<some_file>:<line_number>\n\x1b[31m  ↳ \x1b[0m\x1b[31mstacktrace=\x1b[0mgithub.com/anton7r/zap-prettyconsole.TestEncodeEntry\n               \t/<some_file>:<line_number>\n               testing.tRunner\n               \t/<some_file>:<line_number>\n",
 			ent: zapcore.Entry{
 				Level:   zapcore.ErrorLevel,
 				Message: "test message",
@@ -286,11 +286,11 @@ func TestEncodeEntry(t *testing.T) {
 			//                  .cause.1=joined 2
 			//          .cause.1=fmt error
 			//  ↳ nil_cause_error=Error has nil cause
-			//  ↳ stacktrace=github.com/thessem/zap-prettyconsole.TestEncodeEntry
+			//  ↳ stacktrace=github.com/anton7r/zap-prettyconsole.TestEncodeEntry
 			//                       /<some_file>:<line_number>
 			//               testing.tRunner
 			//                       /<some_file>:<line_number>
-			expected: "\x1b[90m4:33PM\x1b[0m\x1b[31m \x1b[0m\x1b[31mERR\x1b[0m\x1b[31m \x1b[0m\x1b[1m\x1b[31m>\x1b[0m\x1b[0m\x1b[31m \x1b[0mtest message\n\x1b[31m  ↳ error\x1b[0m\x1b[31m=\x1b[0merror with context\n          \x1b[31m.cause\x1b[0m\x1b[31m=\x1b[0mcause 1\n\x1b[31m  ↳ error\x1b[0m\x1b[31m=\x1b[0merrors with context\n          \x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mcause 1\n          \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mcause 2\n\x1b[31m  ↳ error\x1b[0m\x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mjoined cause 1\n         \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mjoined cause 2\n\x1b[31m  ↳ error\x1b[0m\x1b[31m=\x1b[0mJoined and fmt\n          \x1b[31m.cause.0\x1b[0m\x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mjoined 1\n                  \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mjoined 2\n          \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mfmt error\n\x1b[31m  ↳ nil_cause_error\x1b[0m\x1b[31m=\x1b[0mError has nil cause\n\x1b[31m  ↳ \x1b[0m\x1b[31mstacktrace=\x1b[0mgithub.com/thessem/zap-prettyconsole.TestEncodeEntry\n               \t/<some_file>:<line_number>\n               testing.tRunner\n               \t/<some_file>:<line_number>\n",
+			expected: "\x1b[90m4:33PM\x1b[0m\x1b[31m \x1b[0m\x1b[31mERR\x1b[0m\x1b[31m \x1b[0m\x1b[1m\x1b[31m>\x1b[0m\x1b[0m\x1b[31m \x1b[0mtest message\n\x1b[31m  ↳ error\x1b[0m\x1b[31m=\x1b[0merror with context\n          \x1b[31m.cause\x1b[0m\x1b[31m=\x1b[0mcause 1\n\x1b[31m  ↳ error\x1b[0m\x1b[31m=\x1b[0merrors with context\n          \x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mcause 1\n          \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mcause 2\n\x1b[31m  ↳ error\x1b[0m\x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mjoined cause 1\n         \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mjoined cause 2\n\x1b[31m  ↳ error\x1b[0m\x1b[31m=\x1b[0mJoined and fmt\n          \x1b[31m.cause.0\x1b[0m\x1b[31m.cause.0\x1b[0m\x1b[31m=\x1b[0mjoined 1\n                  \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mjoined 2\n          \x1b[31m.cause.1\x1b[0m\x1b[31m=\x1b[0mfmt error\n\x1b[31m  ↳ nil_cause_error\x1b[0m\x1b[31m=\x1b[0mError has nil cause\n\x1b[31m  ↳ \x1b[0m\x1b[31mstacktrace=\x1b[0mgithub.com/anton7r/zap-prettyconsole.TestEncodeEntry\n               \t/<some_file>:<line_number>\n               testing.tRunner\n               \t/<some_file>:<line_number>\n",
 			ent: zapcore.Entry{
 				Level:   zapcore.ErrorLevel,
 				Message: "test message",

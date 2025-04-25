@@ -1,4 +1,4 @@
-module github.com/thessem/zap-prettyconsole
+module github.com/anton7r/zap-prettyconsole
 
 go 1.18
 
